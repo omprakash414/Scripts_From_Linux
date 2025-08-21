@@ -67,7 +67,7 @@ if [[ "$mode" == "paired" ]]; then
         pigz -dc --fast -p "$num_threads" "$read_one" "$read_two" > "$base_name.fastq"
         echo "Decompressed: $base_name"
 
-        grid multiplex -r . -e fastq -o "$output_dir" -d "$grid_db" -c 0.2 -p -n "$num_threads"
+        grid multiplex -r . -e fastq -o "$output_dir" -d "$grid_db" -c 0.2 -n "$num_threads"
 
         rm "$base_name.fastq"
         echo "Finished sample: $base_name"
