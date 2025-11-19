@@ -29,7 +29,7 @@ for PRJ_FOLDER in "$BASE_DIR"/PRJ*; do
         # Execute the commands
         ls *.spingo.out.txt > all_spingo.txt
         perl ~/spingo/create_genus_matrix.pl all_spingo.txt > "${FOLDER_NAME}_genus_matrix.txt"
-        
+        perl ~/spingo/create_species_matrix.pl all_spingo.txt > "${FOLDER_NAME}_species_matrix.txt"
         # Navigate back to the base directory
         cd "$BASE_DIR" || { echo "Failed to return to base directory"; exit 1; }
     fi
