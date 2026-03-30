@@ -145,42 +145,6 @@ fi
 
 echo "🎉 All files processed!"
 
-# Function to get the server's IP address
-get_ip() {
-    hostname -I | awk '{print $1}'  # Extracts the first IP address
-}
-
-# Email Notification Function (Uses Python)
-send_email() {
-    SERVER_IP=$(get_ip)  # Get server IP dynamically
-    python3 - <<EOF
-import smtplib
-from email.mime.text import MIMEText
-
-def send():
-    fromaddr = 'youremail.gmail.com'  # Replace with your Gmail
-    toaddrs  = 'receivers_email@gmail.com'  # Replace with recipient email
-
-    subject = "[${SERVER_IP}]: Process has Ended ✅"
-    body = "Hello,\n\nYour process has successfully completed on server ${SERVER_IP}.\n\nBest,\nYour Script"
-
-    msg = MIMEText(body)
-    msg['Subject'] = subject
-    msg['From'] = fromaddr
-    msg['To'] = toaddrs
-
-    username = 'youremail.gmail.com'   # Replace with your Gmail
-    password = 'xxxxxxxxxxxxxxx'         # Replace with App Password
-
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
-    server.login(username, password)
-    server.sendmail(fromaddr, toaddrs, msg.as_string())
-    server.quit()
-
-send()
-EOF
-}
 
 # Send email notification after completion
 send_email
